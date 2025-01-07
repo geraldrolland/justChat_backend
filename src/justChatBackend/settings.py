@@ -222,14 +222,11 @@ STORAGES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis-11216.c277.us-east-1-3.ec2.redns.redis-cloud.com',  # Adjust the IP and port if necessary
+          'LOCATION': 'redis://default:zzBAlSv81bcsrlalRIzDBwluKFRBdJio@redis-11216.c277.us-east-1-3.ec2.redns.redis-cloud.com:11216', # Adjust the IP and port if necessary
         
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'decode_responses': True,
-            'port': '11216',
-            'username': "default",
-            'password': 'zzBAlSv81bcsrlalRIzDBwluKFRBdJio',
         }
     }
 }
