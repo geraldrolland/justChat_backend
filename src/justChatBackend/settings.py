@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -70,12 +70,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465 #587
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'geraldrolland123456@gmail.com'
-EMAIL_HOST_PASSWORD =  'gmbj vyce ixpn gyrn '
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
 
-GOOGLE_OAUTH2_CLIENT_ID = "647424373109-0cs76iiqksock5rg4pk5mblebeik91cm.apps.googleusercontent.com"
-GOOGLE_OAUTH2_CLIENT_SECRET = "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"
+GOOGLE_OAUTH2_CLIENT_ID = config("GOOGLE_OAUTH2_CLIENT_ID")
+GOOGLE_OAUTH2_CLIENT_SECRET = config("GOOGLE_OAUTH2_CLIENT_SECRET")
 
 
 
@@ -150,9 +150,9 @@ STATIC_ROOT = BASE_DIR / 'django_static'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'justChat_database',
-        'USER': 'just',
-        'PASSWORD': '123',
+        'NAME': config("DATABASE_NAME"),
+        'USER': config("DATABASE_USER"),
+        'PASSWORD': config("DATABASE_PASSWORD"),
         'HOSTNAME': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
