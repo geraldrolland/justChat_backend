@@ -105,7 +105,6 @@ class UserViewSet(viewsets.ViewSet):
             return Response({"error": "bad request"}, status=status.HTTP_400_BAD_REQUEST)
         except CustomUser.DoesNotExist as e:
             otp = random.randint(51011, 89630)
-            print("this is the code", otp)
             cache.set(request.data.get("email"), value=otp, timeout=120)
             subject = "User Email Verification"
             html_content = f'''
@@ -121,7 +120,6 @@ class UserViewSet(viewsets.ViewSet):
             mail_from = settings.EMAIL_HOST_USER
             recipient = [request.data.get("email")]
             send_user_otp(subject, html_content, mail_from, recipient)
-            print(f"this is the first endpoint otp {cache.get(request.data.get("email"))}")
             return Response({"detail": "OTP created successfully"}, status=status.HTTP_200_OK)
 
     @action(detail=False, methods=["post"], permission_classes=[AllowAny])
@@ -515,7 +513,6 @@ class UserViewSet(viewsets.ViewSet):
         request.data['created_at'] = datetime.strptime(request.data.get("created_at"), '%m/%d/%Y, %I:%M:%S %p')
         message = Message.objects.create(**request.data)
         message.save()
-        print("THE MESSAGE SAVED")
         group_msg_obj = {
             "message_id": message.message_id,
             "video": message.video if message.video else None,
@@ -556,7 +553,6 @@ class UserViewSet(viewsets.ViewSet):
         user = get_object_or_404(CustomUser, email=request.user.email)
         message = request.data
         message["created_at"] = datetime.strptime(message.get("created_at"), '%m/%d/%Y, %I:%M:%S %p')
-        print(f'THIS IS THE MESSAGE SENT {message}')
         message["sender"] = user
         message["receipient"] = friend
         message_obj = Message.objects.create(**message)
@@ -566,7 +562,6 @@ class UserViewSet(viewsets.ViewSet):
                 message_obj.is_receipient_online = True
             message.update({"message_id":message_obj.message_id, "created_at": FormatDate.format_date(message_obj.created_at), "is_receipient_online": message_obj.is_receipient_online})
             message_obj.save()
-            print("MESSAGE IS ONLINE", message["is_receipient_online"])
             message["sender"] = user.id
             message["receipient"] = friend.id
             async_to_sync(channel_layer.send)(friend_channel_name,{
@@ -578,7 +573,6 @@ class UserViewSet(viewsets.ViewSet):
             message_obj.save()
         message["sender"] = user.id
         message["receipient"] = friend.id
-        print(type(message))
         return Response(message, status=status.HTTP_200_OK)
     
     @action(detail=True, methods=["get"], permission_classes=[IsAuthenticated], authentication_classes=[JWTAuthentication, BasicAuthentication, SessionAuthentication])
@@ -672,7 +666,6 @@ class UserViewSet(viewsets.ViewSet):
         user.last_date_online = datetime.now().isoformat()
         user.is_online = False
         user.save()
-        print("logged out")
         return Response({"detail": "logged out succesfully"}, status=status.HTTP_200_OK)
 
 
@@ -703,7 +696,6 @@ class UserViewSet(viewsets.ViewSet):
     def otp_unhash_algo(hash_str):
         if hash_str is None:
             print("hash_str is none")
-        print(hash_str)
         unhash_map_dict = {
             '}?<%': "0", '*\\)>': "1",
             '/$<?': "2", '/($?': "3",
@@ -713,7 +705,6 @@ class UserViewSet(viewsets.ViewSet):
         }
         otp_str = ""
         hash_str = hash_str.split("=")
-        print("this is the hash str list", hash_str)
         for _str in hash_str:
             otp_str += unhash_map_dict[_str]
         return otp_str
