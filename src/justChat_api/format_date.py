@@ -51,7 +51,7 @@ class FormatDate:
             elif date.day == datetime.now().day - 1 and datetime.now().month == date.month:
                 return f"Yesterday, {time_map[str(date.hour)][0]}.{date.minute:02}  {time_map[str(date.hour)][1]}"
             elif date.day < datetime.now().day - 1 and date.day > datetime.now().day - 7 and datetime.now().month == date.month:
-                return f"{date.strftime("%a")}, {time_map[str(date.hour)][0]}.{date.minute:02} {time_map[str(date.hour)][1]}"
+                return f"{date.strftime('%a')}, {time_map[str(date.hour)][0]}.{date.minute:02} {time_map[str(date.hour)][1]}"
             else:
                 return f"{date.day}/{date.month}/{date.year}, {time_map[str(date.hour)][0]}.{date.minute:02} {time_map[str(date.hour)][1]}"
         else:
