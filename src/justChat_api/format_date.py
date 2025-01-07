@@ -47,7 +47,7 @@ class FormatDate:
 
         if datetime.now().year == date.year:
             if datetime.now().day == date.day and datetime.now().month == date.month:
-                return f"Today, {time_map[str(date.hour)][0]}.{date.minute if date.minute > 9 else "0"+str(date.minute)} {time_map[str(date.hour)][1]}"
+                return f"Today, {time_map[str(date.hour)][0]}.{date.minute if date.minute > 9 else {"0"} + str(date.minute)} {time_map[str(date.hour)][1]}"
             elif date.day == datetime.now().day - 1 and datetime.now().month == date.month:
                 return f"Yesterday, {time_map[str(date.hour)][0]}.{date.minute if date.minute > 9 else "0"+str(date.minute)}  {time_map[str(date.hour)][1]}"
             elif date.day < datetime.now().day - 1 and date.day > datetime.now().day - 7 and datetime.now().month == date.month:
