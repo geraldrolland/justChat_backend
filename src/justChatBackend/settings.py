@@ -85,12 +85,8 @@ CORS_ALLOW_CREDENTIALS = True
 AUTH_USER_MODEL = 'justChat_api.CustomUser'
 ROOT_URLCONF = 'justChatBackend.urls'
 CORS_ALLOWED_ORIGINS = [
-"http://192.168.239.48:5173",
-"http://172.31.144.1:5173",
 "http://localhost:5173",
-"http://192.168.82.48:5173",
-"http://192.168.84.48:5173",
-"http://197.211.59.147:5173",
+"https://justchat-0hms.onrender.com",
 ]
 
 
