@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fnj208p9@29sgpbw&y(czelpg@+zb(g1f+sjijah4g+x8t#x8w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['justchat-api.onrender.com']
 
 
 # Application definition
