@@ -150,17 +150,22 @@ STATIC_URL = '/django_static/'
 STATIC_ROOT = BASE_DIR / 'django_static'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config("DATABASE_NAME"),
-        'USER': config("DATABASE_USER"),
-        'PASSWORD': config("DATABASE_PASSWORD"),
-        'HOSTNAME': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8',
-            'use_unicode': True,
-        },
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
+    },
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': config("DATABASE_NAME"),
+    #    'USER': config("DATABASE_USER"),
+    #    'PASSWORD': config("DATABASE_PASSWORD"),
+    #    'HOSTNAME': 'localhost',
+    #    'PORT': '3306',
+    #   'OPTIONS': {
+    #        'charset': 'utf8',
+    #        'use_unicode': True,
+    #    },
+    #}
+
 }
 
 
