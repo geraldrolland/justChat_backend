@@ -61,8 +61,8 @@ MIDDLEWARE = [
 ]
 
 # GOOGLE AUTHENTICATION CONFIGURATION
-BASE_APP_URL = "http://localhost:5173/home"
-BASE_API_URL = "http://localhost:8000"
+BASE_APP_URL = "https://justchat-0hms.onrender.com/home"
+BASE_API_URL = "https://justchat-api.onrender.com"
 
 
 # SMTP GMAIL CONFIGURATION
@@ -111,7 +111,7 @@ CELERY_TASK_ROUTES = {
 
 #Configuration for celery with Redis broker
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis-11216.c277.us-east-1-3.ec2.redns.redis-cloud.com'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
@@ -222,9 +222,14 @@ STORAGES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://197.211.59.147:6379/0',  # Adjust the IP and port if necessary
+        'LOCATION': 'redis-11216.c277.us-east-1-3.ec2.redns.redis-cloud.com',  # Adjust the IP and port if necessary
+        
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'decode_responses': True,
+            'port': '11216',
+            'username': "default",
+            'password': 'zzBAlSv81bcsrlalRIzDBwluKFRBdJio',
         }
     }
 }
@@ -261,7 +266,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("197.211.59.147", 6379)],
+            "hosts": [('redis-11216.c277.us-east-1-3.ec2.redns.redis-cloud.com', 11216)],
         },
     },
 }
