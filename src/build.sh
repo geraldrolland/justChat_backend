@@ -1,4 +1,4 @@
-set -o erroexit
+set -o errexit
 
 pip install -r requirementts.txt
 python manage.py collectstatic --no-input
