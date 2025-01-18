@@ -59,8 +59,9 @@ Run migrations and start the server:
 
 python manage.py migrate
 python manage.py runserver
-Contributing
-We welcome contributions! To contribute:
+
+## Contributing
+To contribute:
 
 Fork the repository.
 Create a new branch for your feature or bug fix.
